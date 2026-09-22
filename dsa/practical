@@ -1,0 +1,623 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX 100
+
+
+/* ============================================================
+   1. Write a C program to read n elements into an array and
+      calculate and display the sum of all array elements.
+   ============================================================ */
+void question1()
+{
+    int a[MAX], n, i, sum = 0;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+        sum += a[i];
+    }
+
+    printf("Sum = %d\n", sum);
+}
+
+
+/* ============================================================
+   2. Write a C program to insert an element at any specified
+      position in an array. Display the array before and after
+      insertion.
+   ============================================================ */
+void question2()
+{
+    int a[MAX], n, i, pos, value;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    printf("Enter position and element to insert: ");
+    scanf("%d %d", &pos, &value);
+
+    printf("Array before insertion: ");
+    for (i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    for (i = n; i >= pos; i--)
+        a[i] = a[i - 1];
+
+    a[pos - 1] = value;
+    n++;
+
+    printf("\nArray after insertion: ");
+    for (i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    printf("\n");
+}
+
+
+/* ============================================================
+   3. Write a C program to delete an element from any specified
+      position in an array. Display the array before and after
+      deletion.
+   ============================================================ */
+void question3()
+{
+    int a[MAX], n, i, pos;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    printf("Enter position to delete: ");
+    scanf("%d", &pos);
+
+    printf("Array before deletion: ");
+    for (i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    for (i = pos - 1; i < n - 1; i++)
+        a[i] = a[i + 1];
+
+    n--;
+
+    printf("\nArray after deletion: ");
+    for (i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    printf("\n");
+}
+
+
+/* ============================================================
+   4. Write a C program to search for a given element in an
+      array using linear search. Display the position if the
+      element is found; otherwise, display an appropriate
+      message.
+   ============================================================ */
+void question4()
+{
+    int a[MAX], n, i, key, position = -1;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    printf("Enter element to search: ");
+    scanf("%d", &key);
+
+    for (i = 0; i < n; i++)
+    {
+        if (a[i] == key)
+        {
+            position = i + 1;
+            break;
+        }
+    }
+
+    if (position != -1)
+        printf("Element found at position %d\n", position);
+    else
+        printf("Element not found\n");
+}
+
+
+/* ============================================================
+   5. Write a C program to sort the elements of an array in
+      ascending order. Display the array before and after
+      sorting.
+   ============================================================ */
+void question5()
+{
+    int a[MAX], n, i, j, temp;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    printf("Array before sorting: ");
+    for (i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = i + 1; j < n; j++)
+        {
+            if (a[i] > a[j])
+            {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+
+    printf("\nArray after sorting: ");
+    for (i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    printf("\n");
+}
+
+
+/* ============================================================
+   6. Write a C program to read two matrices and calculate
+      their element-wise sum and difference. Display both
+      resulting matrices.
+   ============================================================ */
+void question6()
+{
+    int a[10][10], b[10][10];
+    int r, c, i, j;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &r, &c);
+
+    printf("Enter first matrix:\n");
+    for (i = 0; i < r; i++)
+        for (j = 0; j < c; j++)
+            scanf("%d", &a[i][j]);
+
+    printf("Enter second matrix:\n");
+    for (i = 0; i < r; i++)
+        for (j = 0; j < c; j++)
+            scanf("%d", &b[i][j]);
+
+    printf("\nSum of matrices:\n");
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < c; j++)
+            printf("%d\t", a[i][j] + b[i][j]);
+        printf("\n");
+    }
+
+    printf("\nDifference of matrices (A - B):\n");
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < c; j++)
+            printf("%d\t", a[i][j] - b[i][j]);
+        printf("\n");
+    }
+}
+
+
+/* ============================================================
+   7. Write a C program to multiply two matrices. Read the
+      dimensions and elements of both matrices, check whether
+      multiplication is possible, and display the resulting
+      matrix.
+   ============================================================ */
+void question7()
+{
+    int a[10][10], b[10][10], c[10][10];
+    int r1, c1, r2, c2;
+    int i, j, k;
+
+    printf("Enter rows and columns of first matrix: ");
+    scanf("%d %d", &r1, &c1);
+
+    printf("Enter rows and columns of second matrix: ");
+    scanf("%d %d", &r2, &c2);
+
+    if (c1 != r2)
+    {
+        printf("Matrix multiplication is not possible.\n");
+        return;
+    }
+
+    printf("Enter first matrix:\n");
+    for (i = 0; i < r1; i++)
+        for (j = 0; j < c1; j++)
+            scanf("%d", &a[i][j]);
+
+    printf("Enter second matrix:\n");
+    for (i = 0; i < r2; i++)
+        for (j = 0; j < c2; j++)
+            scanf("%d", &b[i][j]);
+
+    for (i = 0; i < r1; i++)
+    {
+        for (j = 0; j < c2; j++)
+        {
+            c[i][j] = 0;
+
+            for (k = 0; k < c1; k++)
+                c[i][j] += a[i][k] * b[k][j];
+        }
+    }
+
+    printf("Resultant matrix:\n");
+
+    for (i = 0; i < r1; i++)
+    {
+        for (j = 0; j < c2; j++)
+            printf("%d\t", c[i][j]);
+
+        printf("\n");
+    }
+}
+
+
+/* ============================================================
+   8. Write a C program to demonstrate the concept of pointers
+      using an array. Read array elements and use a pointer to
+      access and display the elements and their addresses.
+   ============================================================ */
+void question8()
+{
+    int a[MAX], n, i;
+    int *p;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    p = a;
+
+    printf("\nElement\tAddress\n");
+
+    for (i = 0; i < n; i++)
+        printf("%d\t%p\n", *(p + i), (void *)(p + i));
+}
+
+
+/* ============================================================
+   9. Write a C program using a structure to store student
+      information such as roll number, name, and marks.
+      Read the information and display the stored student
+      details.
+   ============================================================ */
+void question9()
+{
+    struct Student
+    {
+        int roll;
+        char name[50];
+        float marks;
+    };
+
+    struct Student s;
+
+    printf("Enter roll number: ");
+    scanf("%d", &s.roll);
+
+    printf("Enter name: ");
+    scanf(" %[^\n]", s.name);
+
+    printf("Enter marks: ");
+    scanf("%f", &s.marks);
+
+    printf("\nStudent Details\n");
+    printf("Roll Number : %d\n", s.roll);
+    printf("Name        : %s\n", s.name);
+    printf("Marks       : %.2f\n", s.marks);
+}
+
+
+/* ============================================================
+   10. Write a C program to implement a stack using an array
+       and perform the following operations: PUSH, POP, PEEK,
+       and DISPLAY. Also handle stack overflow and underflow
+       conditions.
+   ============================================================ */
+void question10()
+{
+    int stack[MAX], top = -1;
+    int choice, value, i;
+
+    while (1)
+    {
+        printf("\n--- STACK ---\n");
+        printf("1. PUSH\n");
+        printf("2. POP\n");
+        printf("3. PEEK\n");
+        printf("4. DISPLAY\n");
+        printf("5. EXIT\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                if (top == MAX - 1)
+                    printf("Stack Overflow\n");
+                else
+                {
+                    printf("Enter element: ");
+                    scanf("%d", &value);
+                    stack[++top] = value;
+                }
+                break;
+
+            case 2:
+                if (top == -1)
+                    printf("Stack Underflow\n");
+                else
+                    printf("Deleted element: %d\n", stack[top--]);
+                break;
+
+            case 3:
+                if (top == -1)
+                    printf("Stack is empty\n");
+                else
+                    printf("Top element: %d\n", stack[top]);
+                break;
+
+            case 4:
+                if (top == -1)
+                    printf("Stack is empty\n");
+                else
+                {
+                    printf("Stack: ");
+                    for (i = top; i >= 0; i--)
+                        printf("%d ", stack[i]);
+                    printf("\n");
+                }
+                break;
+
+            case 5:
+                return;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+
+
+/* ============================================================
+   11. Write a C program to implement a queue using an array
+       and perform the following operations: ENQUEUE, DEQUEUE,
+       PEEK, and DISPLAY. Also handle queue overflow and
+       underflow conditions.
+   ============================================================ */
+void question11()
+{
+    int queue[MAX];
+    int front = -1, rear = -1;
+    int choice, value, i;
+
+    while (1)
+    {
+        printf("\n--- QUEUE ---\n");
+        printf("1. ENQUEUE\n");
+        printf("2. DEQUEUE\n");
+        printf("3. PEEK\n");
+        printf("4. DISPLAY\n");
+        printf("5. EXIT\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                if (rear == MAX - 1)
+                    printf("Queue Overflow\n");
+                else
+                {
+                    printf("Enter element: ");
+                    scanf("%d", &value);
+
+                    if (front == -1)
+                        front = 0;
+
+                    queue[++rear] = value;
+                }
+                break;
+
+            case 2:
+                if (front == -1 || front > rear)
+                    printf("Queue Underflow\n");
+                else
+                {
+                    printf("Deleted element: %d\n", queue[front++]);
+
+                    if (front > rear)
+                        front = rear = -1;
+                }
+                break;
+
+            case 3:
+                if (front == -1)
+                    printf("Queue is empty\n");
+                else
+                    printf("Front element: %d\n", queue[front]);
+                break;
+
+            case 4:
+                if (front == -1)
+                    printf("Queue is empty\n");
+                else
+                {
+                    printf("Queue: ");
+                    for (i = front; i <= rear; i++)
+                        printf("%d ", queue[i]);
+                    printf("\n");
+                }
+                break;
+
+            case 5:
+                return;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+
+
+/* ============================================================
+   12. Write a C program to convert an infix expression into
+       a postfix expression using a stack. The program should
+       consider operator precedence and parentheses.
+   ============================================================ */
+
+int precedence(char op)
+{
+    if (op == '^')
+        return 3;
+
+    if (op == '*' || op == '/')
+        return 2;
+
+    if (op == '+' || op == '-')
+        return 1;
+
+    return 0;
+}
+
+void question12()
+{
+    char infix[MAX], stack[MAX], postfix[MAX];
+    int top = -1, i, j = 0;
+    char ch;
+
+    printf("Enter infix expression: ");
+    scanf("%s", infix);
+
+    for (i = 0; infix[i] != '\0'; i++)
+    {
+        ch = infix[i];
+
+        /* Operand */
+        if (isalnum(ch))
+        {
+            postfix[j++] = ch;
+        }
+
+        /* Opening parenthesis */
+        else if (ch == '(')
+        {
+            stack[++top] = ch;
+        }
+
+        /* Closing parenthesis */
+        else if (ch == ')')
+        {
+            while (top != -1 && stack[top] != '(')
+                postfix[j++] = stack[top--];
+
+            if (top != -1)
+                top--;
+        }
+
+        /* Operator */
+        else
+        {
+            while (top != -1 &&
+                   stack[top] != '(' &&
+                   precedence(stack[top]) >= precedence(ch))
+            {
+                postfix[j++] = stack[top--];
+            }
+
+            stack[++top] = ch;
+        }
+    }
+
+    while (top != -1)
+        postfix[j++] = stack[top--];
+
+    postfix[j] = '\0';
+
+    printf("Postfix expression: %s\n", postfix);
+}
+
+
+/* ============================================================
+                         MAIN FUNCTION
+   ============================================================ */
+
+int main()
+{
+    int choice;
+
+    while (1)
+    {
+        printf("\n========================================\n");
+        printf("       DATA STRUCTURES PRACTICALS\n");
+        printf("========================================\n");
+
+        printf("1.  Sum of Array Elements\n");
+        printf("2.  Insert Element in Array\n");
+        printf("3.  Delete Element from Array\n");
+        printf("4.  Linear Search\n");
+        printf("5.  Array Sorting\n");
+        printf("6.  Matrix Addition and Difference\n");
+        printf("7.  Matrix Multiplication\n");
+        printf("8.  Pointers with Array\n");
+        printf("9.  Student Structure\n");
+        printf("10. Stack using Array\n");
+        printf("11. Queue using Array\n");
+        printf("12. Infix to Postfix\n");
+        printf("13. Exit\n");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:  question1();  break;
+            case 2:  question2();  break;
+            case 3:  question3();  break;
+            case 4:  question4();  break;
+            case 5:  question5();  break;
+            case 6:  question6();  break;
+            case 7:  question7();  break;
+            case 8:  question8();  break;
+            case 9:  question9();  break;
+            case 10: question10(); break;
+            case 11: question11(); break;
+            case 12: question12(); break;
+
+            case 13:
+                printf("Program terminated.\n");
+                return 0;
+
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    }
+
+    return 0;
+}

@@ -1,9 +1,7 @@
-text = input("Enter a word:-")
-count = 0
-l1 = list(x for x in text.split())
-for x in l1:
-    x = str(x)
-    if len(x) > 3:
-        count +=1
-print(count)
+student = {"Name": "Ram", "Age": 23}
+key = "Name"
 
+if key in student:
+    print("Key is Available in the Dictionary")
+else:
+    print("Key is Not Available in the Dictionary")
